@@ -1,0 +1,30 @@
+diff -ruN JumpTest-Step5/GameObject.java JumpTest-Step6/GameObject.java
+--- JumpTest-Step5/GameObject.java	2014-07-10 16:15:57.817196457 -0400
++++ JumpTest-Step6/GameObject.java	2014-07-10 16:26:48.949618767 -0400
+@@ -20,6 +20,10 @@
+         this.color = color;
+     }
+ 
++    public void setDx (int dx) {
++        this.dx = dx;
++    }
++
+     public void draw (Graphics g) {
+         g.setColor(color);
+         g.fillRect(x, y, width, height);
+diff -ruN JumpTest-Step5/JumpTest.java JumpTest-Step6/JumpTest.java
+--- JumpTest-Step5/JumpTest.java	2014-07-10 16:19:43.626730091 -0400
++++ JumpTest-Step6/JumpTest.java	2014-07-10 16:24:43.268765177 -0400
+@@ -36,6 +36,12 @@
+         if (code == KeyEvent.VK_ESCAPE) {
+             System.exit (0);
+         }
++        if (code == KeyEvent.VK_RIGHT) {
++            player.setDx (3);
++        }
++        if (code == KeyEvent.VK_LEFT) {
++            player.setDx (-3);
++        }
+     }
+ 
+     public void update () {

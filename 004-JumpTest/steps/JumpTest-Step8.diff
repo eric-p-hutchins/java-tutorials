@@ -1,0 +1,65 @@
+diff -ruN JumpTest-Step7/JumpTest.java JumpTest-Step8/JumpTest.java
+--- JumpTest-Step7/JumpTest.java	2014-07-10 16:28:48.182428564 -0400
++++ JumpTest-Step8/JumpTest.java	2014-07-10 16:35:59.537358205 -0400
+@@ -1,3 +1,6 @@
++import java.util.HashSet;
++import java.util.Set;
++
+ import java.awt.Frame;
+ import java.awt.image.BufferStrategy;
+ import java.awt.Graphics;
+@@ -9,6 +12,8 @@
+ 
+ public class JumpTest extends Frame {
+ 
++    private Set<Integer> keys = new HashSet<Integer>();
++
+     private GameObject player = null;
+ 
+     private void clearScreen (Graphics g) {
+@@ -33,22 +38,22 @@
+     }
+ 
+     public void pressKey (int code) {
+-        if (code == KeyEvent.VK_ESCAPE) {
+-            System.exit (0);
+-        }
+-        if (code == KeyEvent.VK_RIGHT) {
+-            player.setDx (3);
+-        }
+-        if (code == KeyEvent.VK_LEFT) {
+-            player.setDx (-3);
+-        }
++        keys.add (code);
+     }
+ 
+     public void releaseKey (int code) {
+-        if (code == KeyEvent.VK_RIGHT) {
+-            player.setDx (0);
++        keys.remove (code);
++    }
++
++    public void handleEvents () {
++        if (keys.contains(KeyEvent.VK_ESCAPE)) {
++            System.exit (0);
+         }
+-        if (code == KeyEvent.VK_LEFT) {
++        if (keys.contains(KeyEvent.VK_RIGHT) && !keys.contains(KeyEvent.VK_LEFT)) {
++            player.setDx (3);
++        } else if (keys.contains(KeyEvent.VK_LEFT) && !keys.contains(KeyEvent.VK_RIGHT)) {
++            player.setDx (-3);
++        } else {
+             player.setDx (0);
+         }
+     }
+diff -ruN JumpTest-Step7/JumpTestActionListener.java JumpTest-Step8/JumpTestActionListener.java
+--- JumpTest-Step7/JumpTestActionListener.java	2014-07-10 16:28:24.570268196 -0400
++++ JumpTest-Step8/JumpTestActionListener.java	2014-07-10 16:33:57.892532028 -0400
+@@ -11,6 +11,7 @@
+ 
+     public void actionPerformed (ActionEvent e) {
+         at.draw ();
++        at.handleEvents ();
+         at.update ();
+     }
+ }

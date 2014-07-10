@@ -1,0 +1,11 @@
+diff -ruN AnimTest-Step1/AnimTest.java AnimTest-Step2/AnimTest.java
+--- AnimTest-Step1/AnimTest.java	2014-07-07 13:06:19.462410878 -0400
++++ AnimTest-Step2/AnimTest.java	2014-07-07 13:07:39.234949807 -0400
+@@ -4,6 +4,7 @@
+ 
+     public AnimTest() {
+         this.addWindowListener(new AnimTestWindowAdapter());
++        this.setUndecorated(true);
+         this.setSize(320, 240);
+         this.setVisible(true);
+     }

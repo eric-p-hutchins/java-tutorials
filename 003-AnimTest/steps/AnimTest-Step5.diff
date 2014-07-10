@@ -1,0 +1,23 @@
+diff -ruN AnimTest-Step4/AnimTest.java AnimTest-Step5/AnimTest.java
+--- AnimTest-Step4/AnimTest.java	2014-07-07 13:15:52.430281741 -0400
++++ AnimTest-Step5/AnimTest.java	2014-07-07 13:19:04.047576273 -0400
+@@ -8,13 +8,17 @@
+ 
+ public class AnimTest extends Frame {
+ 
++    private void clearScreen (Graphics g) {
++        g.setColor(Color.BLACK);
++        g.fillRect(0, 0, 320, 240);
++    }
++
+     public void draw () {
+         BufferStrategy bf = this.getBufferStrategy();
+         Graphics g = null;
+         try {
+             g = bf.getDrawGraphics();
+-            g.setColor(Color.BLACK);
+-            g.fillRect(0, 0, 320, 240);
++            clearScreen (g);
+         } finally {
+             g.dispose();
+         }

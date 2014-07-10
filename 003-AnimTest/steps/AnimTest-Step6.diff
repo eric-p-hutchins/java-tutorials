@@ -1,0 +1,22 @@
+diff -ruN AnimTest-Step5/AnimTest.java AnimTest-Step6/AnimTest.java
+--- AnimTest-Step5/AnimTest.java	2014-07-07 13:19:04.047576273 -0400
++++ AnimTest-Step6/AnimTest.java	2014-07-07 13:23:24.093333093 -0400
+@@ -13,12 +13,18 @@
+         g.fillRect(0, 0, 320, 240);
+     }
+ 
++    private void drawSquare (Graphics g) {
++        g.setColor(Color.WHITE);
++        g.fillRect(48, 32, 16, 16);
++    }
++
+     public void draw () {
+         BufferStrategy bf = this.getBufferStrategy();
+         Graphics g = null;
+         try {
+             g = bf.getDrawGraphics();
+             clearScreen (g);
++            drawSquare (g);
+         } finally {
+             g.dispose();
+         }

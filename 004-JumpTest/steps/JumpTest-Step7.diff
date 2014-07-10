@@ -1,0 +1,31 @@
+diff -ruN JumpTest-Step6/JumpTest.java JumpTest-Step7/JumpTest.java
+--- JumpTest-Step6/JumpTest.java	2014-07-10 16:28:06.526145645 -0400
++++ JumpTest-Step7/JumpTest.java	2014-07-10 16:28:48.182428564 -0400
+@@ -44,6 +44,15 @@
+         }
+     }
+ 
++    public void releaseKey (int code) {
++        if (code == KeyEvent.VK_RIGHT) {
++            player.setDx (0);
++        }
++        if (code == KeyEvent.VK_LEFT) {
++            player.setDx (0);
++        }
++    }
++
+     public void update () {
+         player.update ();
+     }
+diff -ruN JumpTest-Step6/JumpTestKeyAdapter.java JumpTest-Step7/JumpTestKeyAdapter.java
+--- JumpTest-Step6/JumpTestKeyAdapter.java	2014-07-10 16:21:30.735457544 -0400
++++ JumpTest-Step7/JumpTestKeyAdapter.java	2014-07-10 16:29:13.754602242 -0400
+@@ -10,7 +10,7 @@
+     }
+ 
+     public void keyReleased (KeyEvent e) {
+-        System.out.println("You released key " + e.getKeyCode());
++        jt.releaseKey (e.getKeyCode ());
+     }
+ 
+     public void keyPressed (KeyEvent e) {

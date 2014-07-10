@@ -1,0 +1,12 @@
+diff -ruN AnimTest-Step7/AnimTest.java AnimTest-Step8/AnimTest.java
+--- AnimTest-Step7/AnimTest.java	2014-07-07 13:25:36.566228055 -0400
++++ AnimTest-Step8/AnimTest.java	2014-07-10 16:07:07.905597444 -0400
+@@ -37,7 +37,7 @@
+     }
+ 
+     public void update () {
+-        t = t + 1;
++        t++;
+     }
+ 
+     public AnimTest() {

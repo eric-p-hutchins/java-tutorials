@@ -1,0 +1,11 @@
+diff -ru WindowTest-Step2/WindowTest.java WindowTest-Step3/WindowTest.java
+--- WindowTest-Step2/WindowTest.java	2014-07-07 11:26:00.617748696 -0400
++++ WindowTest-Step3/WindowTest.java	2014-07-07 11:26:55.002116105 -0400
+@@ -4,6 +4,7 @@
+ 
+     public static void main (String[] args) {
+         Frame f = new Frame();
++        f.setSize(320, 240);
+         f.setVisible(true);
+     }
+ 

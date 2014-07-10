@@ -1,0 +1,28 @@
+diff -ruN JumpTest-Step10/GameObject.java JumpTest-Step11/GameObject.java
+--- JumpTest-Step10/GameObject.java	2014-07-10 16:44:10.644693671 -0400
++++ JumpTest-Step11/GameObject.java	2014-07-10 16:46:54.233804722 -0400
+@@ -28,6 +28,11 @@
+         this.dy = dy;
+     }
+ 
++    public int getX () { return x; }
++    public int getY () { return y; }
++    public int getWidth () { return width; }
++    public int getHeight () { return height; }
++
+     public void draw (Graphics g) {
+         g.setColor(color);
+         g.fillRect(x, y, width, height);
+diff -ruN JumpTest-Step10/JumpTest.java JumpTest-Step11/JumpTest.java
+--- JumpTest-Step10/JumpTest.java	2014-07-10 16:43:47.404535831 -0400
++++ JumpTest-Step11/JumpTest.java	2014-07-10 16:45:34.385262413 -0400
+@@ -65,7 +65,8 @@
+         } else {
+             player.setDx (0);
+         }
+-        if (keyWasJustPressed(KeyEvent.VK_UP)) {
++        if (keyWasJustPressed(KeyEvent.VK_UP)
++            && player.getY() == 240 - player.getHeight()) {
+             player.setDy (-8);
+         }
+         prevKeys.clear();

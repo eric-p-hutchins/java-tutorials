@@ -1,0 +1,24 @@
+diff -ruN AnimTest-Step0/AnimTest.java AnimTest-Step1/AnimTest.java
+--- AnimTest-Step0/AnimTest.java	2014-07-07 13:04:58.453863599 -0400
++++ AnimTest-Step1/AnimTest.java	2014-07-07 13:06:19.462410878 -0400
+@@ -1,12 +1,15 @@
+ import java.awt.Frame;
+ 
+-public class AnimTest {
++public class AnimTest extends Frame {
++
++    public AnimTest() {
++        this.addWindowListener(new AnimTestWindowAdapter());
++        this.setSize(320, 240);
++        this.setVisible(true);
++    }
+ 
+     public static void main (String[] args) {
+-        Frame f = new Frame();
+-        f.addWindowListener(new AnimTestWindowAdapter());
+-        f.setSize(320, 240);
+-        f.setVisible(true);
++        new AnimTest();
+     }
+ 
+ }

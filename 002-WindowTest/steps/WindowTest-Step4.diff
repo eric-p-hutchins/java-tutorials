@@ -1,0 +1,26 @@
+diff -Nru WindowTest-Step3/WindowTest.java WindowTest-Step4/WindowTest.java
+--- WindowTest-Step3/WindowTest.java	2014-07-07 11:26:55.002116105 -0400
++++ WindowTest-Step4/WindowTest.java	2014-07-07 11:27:43.354442765 -0400
+@@ -4,6 +4,7 @@
+ 
+     public static void main (String[] args) {
+         Frame f = new Frame();
++        f.addWindowListener(new WindowTestWindowAdapter());
+         f.setSize(320, 240);
+         f.setVisible(true);
+     }
+diff -Nru WindowTest-Step3/WindowTestWindowAdapter.java WindowTest-Step4/WindowTestWindowAdapter.java
+--- WindowTest-Step3/WindowTestWindowAdapter.java	1969-12-31 19:00:00.000000000 -0500
++++ WindowTest-Step4/WindowTestWindowAdapter.java	2014-07-07 11:27:23.114306027 -0400
+@@ -0,0 +1,10 @@
++import java.awt.event.WindowAdapter;
++import java.awt.event.WindowEvent;
++
++public class WindowTestWindowAdapter extends WindowAdapter {
++
++    public void windowClosing(WindowEvent e) {
++        System.exit(0);
++    }
++
++}
+\ ファイル末尾に改行がありません

@@ -1,0 +1,60 @@
+diff -ruN AnimTest-Step3/AnimTest.java AnimTest-Step4/AnimTest.java
+--- AnimTest-Step3/AnimTest.java	2014-07-07 13:11:25.224476550 -0400
++++ AnimTest-Step4/AnimTest.java	2014-07-07 13:15:52.430281741 -0400
+@@ -1,16 +1,37 @@
+ import java.awt.Frame;
++import java.awt.image.BufferStrategy;
++import java.awt.Graphics;
++import java.awt.Color;
++import java.awt.Toolkit;
+ 
+ import javax.swing.Timer;
+ 
+ public class AnimTest extends Frame {
+ 
++    public void draw () {
++        BufferStrategy bf = this.getBufferStrategy();
++        Graphics g = null;
++        try {
++            g = bf.getDrawGraphics();
++            g.setColor(Color.BLACK);
++            g.fillRect(0, 0, 320, 240);
++        } finally {
++            g.dispose();
++        }
++
++        bf.show();
++
++        Toolkit.getDefaultToolkit().sync();
++    }
++
+     public AnimTest() {
+         this.addWindowListener(new AnimTestWindowAdapter());
+         this.setUndecorated(true);
+         this.setSize(320, 240);
+         this.setVisible(true);
++        this.createBufferStrategy(2);
+ 
+-        Timer t = new Timer(1000, new AnimTestActionListener());
++        Timer t = new Timer(100, new AnimTestActionListener(this));
+         t.start();
+     }
+ 
+diff -ruN AnimTest-Step3/AnimTestActionListener.java AnimTest-Step4/AnimTestActionListener.java
+--- AnimTest-Step3/AnimTestActionListener.java	2014-07-07 13:10:59.424302249 -0400
++++ AnimTest-Step4/AnimTestActionListener.java	2014-07-07 13:14:45.861832019 -0400
+@@ -3,7 +3,13 @@
+ 
+ public class AnimTestActionListener implements ActionListener {
+ 
++    private AnimTest at;
++
++    public AnimTestActionListener (AnimTest at) {
++        this.at = at;
++    }
++
+     public void actionPerformed (ActionEvent e) {
+-        System.out.println("Doing action");
++        at.draw ();
+     }
+ }

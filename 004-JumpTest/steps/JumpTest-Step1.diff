@@ -1,0 +1,79 @@
+diff -ruN JumpTest-Step0/GameObject.java JumpTest-Step1/GameObject.java
+--- JumpTest-Step0/GameObject.java	1969-12-31 19:00:00.000000000 -0500
++++ JumpTest-Step1/GameObject.java	2014-07-10 16:02:57.155894422 -0400
+@@ -0,0 +1,28 @@
++import java.awt.Graphics;
++import java.awt.Color;
++
++public class GameObject {
++
++    private int x;
++    private int y;
++    private int width;
++    private int height;
++    private Color color;
++
++    public GameObject (int x, int y, int width, int height, Color color) {
++        this.x = x;
++        this.y = y;
++        this.width = width;
++        this.height = height;
++        this.color = color;
++    }
++
++    public void draw (Graphics g) {
++        g.setColor(color);
++        g.fillRect(x, y, width, height);
++    }
++
++    public void update (int t) {
++        y = t % 224;
++    }
++}
+diff -ruN JumpTest-Step0/JumpTest.java JumpTest-Step1/JumpTest.java
+--- JumpTest-Step0/JumpTest.java	2014-07-10 15:56:56.493444902 -0400
++++ JumpTest-Step1/JumpTest.java	2014-07-10 16:02:40.307779994 -0400
+@@ -10,23 +10,20 @@
+ 
+     private int t = 0;
+ 
++    private GameObject player = null;
++
+     private void clearScreen (Graphics g) {
+         g.setColor(Color.BLACK);
+         g.fillRect(0, 0, 320, 240);
+     }
+ 
+-    private void drawSquare (Graphics g) {
+-        g.setColor(Color.WHITE);
+-        g.fillRect(48, t % 224, 16, 16);
+-    }
+-
+     public void draw () {
+         BufferStrategy bf = this.getBufferStrategy();
+         Graphics g = null;
+         try {
+             g = bf.getDrawGraphics();
+             clearScreen (g);
+-            drawSquare (g);
++            player.draw (g);
+         } finally {
+             g.dispose();
+         }
+@@ -37,6 +34,7 @@
+     }
+ 
+     public void update () {
++        player.update (t);
+         t++;
+     }
+ 
+@@ -47,6 +45,8 @@
+         this.setVisible(true);
+         this.createBufferStrategy(2);
+ 
++        player = new GameObject (48, 0, 16, 16, Color.WHITE);
++
+         Timer t = new Timer(20, new JumpTestActionListener(this));
+         t.start();
+     }

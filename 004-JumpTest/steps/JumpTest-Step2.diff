@@ -1,0 +1,52 @@
+diff -ruN JumpTest-Step1/GameObject.java JumpTest-Step2/GameObject.java
+--- JumpTest-Step1/GameObject.java	2014-07-10 16:02:57.155894422 -0400
++++ JumpTest-Step2/GameObject.java	2014-07-10 16:09:29.354558126 -0400
+@@ -5,11 +5,14 @@
+ 
+     private int x;
+     private int y;
++    private int dx;
++    private int dy;
+     private int width;
+     private int height;
+     private Color color;
+ 
+     public GameObject (int x, int y, int width, int height, Color color) {
++        dx = dy = 0;
+         this.x = x;
+         this.y = y;
+         this.width = width;
+@@ -22,7 +25,9 @@
+         g.fillRect(x, y, width, height);
+     }
+ 
+-    public void update (int t) {
+-        y = t % 224;
++    public void update () {
++        x = x + dx;
++        y = y + dy;
++        dy++;
+     }
+ }
+diff -ruN JumpTest-Step1/JumpTest.java JumpTest-Step2/JumpTest.java
+--- JumpTest-Step1/JumpTest.java	2014-07-10 16:08:16.218061402 -0400
++++ JumpTest-Step2/JumpTest.java	2014-07-10 16:06:04.205164808 -0400
+@@ -8,8 +8,6 @@
+ 
+ public class JumpTest extends Frame {
+ 
+-    private int t = 0;
+-
+     private GameObject player = null;
+ 
+     private void clearScreen (Graphics g) {
+@@ -34,8 +32,7 @@
+     }
+ 
+     public void update () {
+-        player.update (t);
+-        t++;
++        player.update ();
+     }
+ 
+     public JumpTest() {

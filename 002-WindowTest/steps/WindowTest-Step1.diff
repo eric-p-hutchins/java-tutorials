@@ -1,0 +1,13 @@
+diff -ru WindowTest-Step0/WindowTest.java WindowTest-Step1/WindowTest.java
+--- WindowTest-Step0/WindowTest.java	2014-07-07 11:23:43.500822359 -0400
++++ WindowTest-Step1/WindowTest.java	2014-07-07 11:24:12.789020225 -0400
+@@ -1,6 +1,9 @@
++import java.awt.Frame;
++
+ public class WindowTest {
+ 
+     public static void main (String[] args) {
++        Frame f = new Frame();
+     }
+ 
+ }

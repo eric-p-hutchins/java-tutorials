@@ -1,0 +1,34 @@
+* Hello, World!
+** class has same name as a file
+** contains methods
+** main method gets run when program is run
+** println method
+* Creating a Window
+** packages hold classes
+** 'import' allows using the unqualified class names
+** java.lang is imported by default
+** 'new' creates objects of a certain class
+** 'extends' creates sub-class
+** System.exit method
+* Animation
+** private/public methods
+** private fields
+** default constructor
+** constructor with parameters
+** 'this'
+** ActionListener/ActionEvent
+** % operator
+** Graphics/BufferStrategy objects
+** Timer object
+** ++ operator
+* Jumping
+** 'final'
+** Set/HashSet
+*** add/remove/clear
+** KeyEvent/KeyListener
+** 'if'/'elseif'/'else'
+** 'for' on a collection
+*** for (T t : listOfTs) { /* do stuff with t */ }
+** ! and && boolean operators
+** += operator
+** methods that return a value

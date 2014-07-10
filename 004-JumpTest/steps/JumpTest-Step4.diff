@@ -1,0 +1,29 @@
+diff -ruN JumpTest-Step3/JumpTest.java JumpTest-Step4/JumpTest.java
+--- JumpTest-Step3/JumpTest.java	2014-07-10 16:10:21.810914395 -0400
++++ JumpTest-Step4/JumpTest.java	2014-07-10 16:14:34.176628393 -0400
+@@ -37,6 +37,7 @@
+ 
+     public JumpTest() {
+         this.addWindowListener(new JumpTestWindowAdapter());
++        this.addKeyListener(new JumpTestKeyAdapter());
+         this.setUndecorated(true);
+         this.setSize(320, 240);
+         this.setVisible(true);
+diff -ruN JumpTest-Step3/JumpTestKeyAdapter.java JumpTest-Step4/JumpTestKeyAdapter.java
+--- JumpTest-Step3/JumpTestKeyAdapter.java	1969-12-31 19:00:00.000000000 -0500
++++ JumpTest-Step4/JumpTestKeyAdapter.java	2014-07-10 16:14:06.728441972 -0400
+@@ -0,0 +1,14 @@
++import java.awt.event.KeyAdapter;
++import java.awt.event.KeyEvent;
++
++public class JumpTestKeyAdapter extends KeyAdapter {
++
++    public void keyReleased (KeyEvent e) {
++        System.out.println("You released key " + e.getKeyCode());
++    }
++
++    public void keyPressed (KeyEvent e) {
++        System.out.println("You pressed key " + e.getKeyCode());
++    }
++
++}

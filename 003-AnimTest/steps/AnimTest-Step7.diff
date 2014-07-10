@@ -1,0 +1,51 @@
+diff -ruN AnimTest-Step6/AnimTest.java AnimTest-Step7/AnimTest.java
+--- AnimTest-Step6/AnimTest.java	2014-07-07 13:23:24.093333093 -0400
++++ AnimTest-Step7/AnimTest.java	2014-07-07 13:25:36.566228055 -0400
+@@ -8,6 +8,8 @@
+ 
+ public class AnimTest extends Frame {
+ 
++    private int t = 0;
++
+     private void clearScreen (Graphics g) {
+         g.setColor(Color.BLACK);
+         g.fillRect(0, 0, 320, 240);
+@@ -15,7 +17,7 @@
+ 
+     private void drawSquare (Graphics g) {
+         g.setColor(Color.WHITE);
+-        g.fillRect(48, 32, 16, 16);
++        g.fillRect(48, t % 224, 16, 16);
+     }
+ 
+     public void draw () {
+@@ -34,6 +36,10 @@
+         Toolkit.getDefaultToolkit().sync();
+     }
+ 
++    public void update () {
++        t = t + 1;
++    }
++
+     public AnimTest() {
+         this.addWindowListener(new AnimTestWindowAdapter());
+         this.setUndecorated(true);
+@@ -41,7 +47,7 @@
+         this.setVisible(true);
+         this.createBufferStrategy(2);
+ 
+-        Timer t = new Timer(100, new AnimTestActionListener(this));
++        Timer t = new Timer(20, new AnimTestActionListener(this));
+         t.start();
+     }
+ 
+diff -ruN AnimTest-Step6/AnimTestActionListener.java AnimTest-Step7/AnimTestActionListener.java
+--- AnimTest-Step6/AnimTestActionListener.java	2014-07-07 13:21:08.664418161 -0400
++++ AnimTest-Step7/AnimTestActionListener.java	2014-07-07 13:25:19.406112123 -0400
+@@ -11,5 +11,6 @@
+ 
+     public void actionPerformed (ActionEvent e) {
+         at.draw ();
++        at.update ();
+     }
+ }

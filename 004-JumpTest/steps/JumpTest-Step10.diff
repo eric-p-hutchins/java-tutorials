@@ -1,0 +1,50 @@
+diff -ruN JumpTest-Step9/GameObject.java JumpTest-Step10/GameObject.java
+--- JumpTest-Step9/GameObject.java	2014-07-10 16:38:40.818453583 -0400
++++ JumpTest-Step10/GameObject.java	2014-07-10 16:44:10.644693671 -0400
+@@ -24,6 +24,10 @@
+         this.dx = dx;
+     }
+ 
++    public void setDy (int dy) {
++        this.dy = dy;
++    }
++
+     public void draw (Graphics g) {
+         g.setColor(color);
+         g.fillRect(x, y, width, height);
+diff -ruN JumpTest-Step9/JumpTest.java JumpTest-Step10/JumpTest.java
+--- JumpTest-Step9/JumpTest.java	2014-07-10 16:39:20.786725037 -0400
++++ JumpTest-Step10/JumpTest.java	2014-07-10 16:43:47.404535831 -0400
+@@ -13,6 +13,7 @@
+ public class JumpTest extends Frame {
+ 
+     private Set<Integer> keys = new HashSet<Integer>();
++    private Set<Integer> prevKeys = new HashSet<Integer>();
+ 
+     private GameObject player = null;
+ 
+@@ -49,6 +50,10 @@
+         return keys.contains(code);
+     }
+ 
++    private boolean keyWasJustPressed (int code) {
++        return keys.contains(code) && !prevKeys.contains(code);
++    }
++
+     public void handleEvents () {
+         if (keys.contains(KeyEvent.VK_ESCAPE)) {
+             System.exit (0);
+@@ -60,6 +65,13 @@
+         } else {
+             player.setDx (0);
+         }
++        if (keyWasJustPressed(KeyEvent.VK_UP)) {
++            player.setDy (-8);
++        }
++        prevKeys.clear();
++        for (Integer code : keys) {
++            prevKeys.add (code);
++        }
+     }
+ 
+     public void update () {

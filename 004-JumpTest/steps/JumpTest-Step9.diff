@@ -1,0 +1,23 @@
+diff -ruN JumpTest-Step8/JumpTest.java JumpTest-Step9/JumpTest.java
+--- JumpTest-Step8/JumpTest.java	2014-07-10 16:39:36.574832265 -0400
++++ JumpTest-Step9/JumpTest.java	2014-07-10 16:39:20.786725037 -0400
+@@ -45,13 +45,17 @@
+         keys.remove (code);
+     }
+ 
++    private boolean keyIsDown (int code) {
++        return keys.contains(code);
++    }
++
+     public void handleEvents () {
+         if (keys.contains(KeyEvent.VK_ESCAPE)) {
+             System.exit (0);
+         }
+-        if (keys.contains(KeyEvent.VK_RIGHT) && !keys.contains(KeyEvent.VK_LEFT)) {
++        if (keyIsDown(KeyEvent.VK_RIGHT) && !keyIsDown(KeyEvent.VK_LEFT)) {
+             player.setDx (3);
+-        } else if (keys.contains(KeyEvent.VK_LEFT) && !keys.contains(KeyEvent.VK_RIGHT)) {
++        } else if (keyIsDown(KeyEvent.VK_LEFT) && !keyIsDown(KeyEvent.VK_RIGHT)) {
+             player.setDx (-3);
+         } else {
+             player.setDx (0);
