@@ -109,12 +109,21 @@ public class ThreeDTest implements GLEventListener {
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         float [] lightPosition = { 25.5f - camX, 5.0f, -25.5f - camZ, 1.0f };
+        float [] cornerLightPosition = { 0.0f - camX, 5.0f, 0.0f - camZ, 1.0f };
+        float [] unitVector = { 1.0f, 1.0f, 1.0f, 1.0f };
         gl.glLoadIdentity();
         gl.glRotatef(-(direction - 90), 0.0f, 1.0f, 0.0f);
         if (useLighting) {
             gl.glEnable(GL2.GL_LIGHTING);
             gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_POSITION, lightPosition, 0);
+            gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_DIFFUSE, unitVector, 0);
+            gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_SPECULAR, unitVector, 0);
             gl.glEnable(GL2.GL_LIGHT0);
+
+            gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_POSITION, cornerLightPosition, 0);
+            gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_DIFFUSE, unitVector, 0);
+            gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_SPECULAR, unitVector, 0);
+            gl.glEnable(GL2.GL_LIGHT1);
         } else {
             gl.glDisable(GL2.GL_LIGHTING);
         }
